@@ -1,0 +1,18 @@
+﻿生成启动时间为 2016/9/19 14:09:00。
+     1>项目“E:\项目\s480\串口通讯\comm_app\comm_app\comm_app.vcxproj”在节点 2 上(Build 个目标)。
+     1>C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V120\Microsoft.CppBuild.targets(388,5): warning MSB8028: The intermediate directory (Debug\) contains files shared from another project (comm_app.vcxproj).  This can lead to incorrect clean and rebuild behavior.
+     1>ClCompile:
+         D:\software\vs2013\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D WIN32 /D _WINDOWS /D _DEBUG /D _UNICODE /D UNICODE /D _AFXDLL /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Yu"stdafx.h" /Fp"Debug\串口调试工具.pch" /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt comm_appDlg.cpp
+         comm_appDlg.cpp
+       Link:
+         D:\software\vs2013\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"E:\项目\s480\串口通讯\comm_app\Debug\串口调试工具.exe" /INCREMENTAL /NOLOGO /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /manifestinput:D:\software\vs2013\VC\Include\Manifest\dpiaware.manifest /DEBUG /PDB:"E:\项目\s480\串口通讯\comm_app\Debug\串口调试工具.pdb" /SUBSYSTEM:WINDOWS /TLBID:1 /ENTRY:"wWinMainCRTStartup" /DYNAMICBASE /NXCOMPAT /IMPLIB:"E:\项目\s480\串口通讯\comm_app\Debug\串口调试工具.lib" /MACHINE:X86 Debug\comm_app.res
+         Debug\comm_app.obj
+         Debug\comm_appDlg.obj
+         Debug\mscomm1.obj
+         Debug\stdafx.obj
+         comm_app.vcxproj -> E:\项目\s480\串口通讯\comm_app\Debug\串口调试工具.exe
+     1>已完成生成项目“E:\项目\s480\串口通讯\comm_app\comm_app\comm_app.vcxproj”(Build 个目标)的操作。
+
+生成成功。
+
+已用时间 00:00:00.95
