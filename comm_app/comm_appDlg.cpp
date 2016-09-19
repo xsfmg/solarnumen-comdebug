@@ -632,6 +632,7 @@ void Ccomm_appDlg::OnCommMscomm1()
 	byte rxdata[1024]; //设置 BYTE 数组
 	wchar_t strtemp[1024];
 	CString strtemp1;
+	CString strtemp3;
 	CButton* p_check;
 	CEdit* p_edit;
 	//_wsetlocale(LC_ALL, _T("")); //本函数用来配置地域的信息，设置当前程序使用的本地化信息
@@ -660,7 +661,6 @@ void Ccomm_appDlg::OnCommMscomm1()
 		k += len;
 		strtemp1.Format(_T("%d"), k);
 		m_editRXNumber = _T("RX:") + strtemp1;
-
 		p_check = (CButton*)GetDlgItem(IDC_CHECK_STOPDISPLAY);//停止显示
 		if (p_check->GetCheck() == FALSE)
 		{
@@ -669,8 +669,38 @@ void Ccomm_appDlg::OnCommMscomm1()
 			{//ASCII显示接受数据
 				//k=串中字符个数和结束符 中文字符算2个，下面转换存在问题：
 				//遇到0、\null、无效字符、宽字符等，则停止转换
-				mbstowcs_s((size_t*)(&k), strtemp, len + 1, (const char*)rxdata, _TRUNCATE);//将rxdata中的字符串转换为宽字符strtemp
-				m_editReceive += strtemp;
+				//mbstowcs_s((size_t*)(&k), strtemp, len + 1, (const char*)rxdata, _TRUNCATE);//将rxdata中的字符串转换为宽字符strtemp
+				//m_editReceive += strtemp;
+				strtemp3 = "0x";
+				//十进制显示接受数据
+				for (k = 0; k < 2; k++) //将数组转换为 CString 型变量
+				{
+					//下一条语句，显示2个字符一个空格
+
+					strtemp1.Format(_T("%-4.2x"), *(rxdata + k));
+					m_editReceive += strtemp1;
+
+				}
+				for (k = 2; k < 4; k++) //将数组转换为 CString 型变量
+				{
+					//下一条语句，显示2个字符一个空格
+
+					strtemp1.Format(_T("%.2x"), *(rxdata + k));
+					strtemp3+= strtemp1;
+				}
+				int i = 0;
+				StrToIntEx(strtemp3.GetString(), STIF_SUPPORT_HEX,&i);
+				float i2 = (i - 1024.00) /57.00;
+				strtemp1.Format(_T("%-4.2f"), i2);
+				m_editReceive += strtemp1;
+				m_editReceive += "  ";
+				for (k = 4; k < len; k++)
+				{
+					strtemp1.Format(_T("%-4.2x"), *(rxdata + k));
+					m_editReceive += strtemp1;
+				}
+
+				
 			}
 			else
 			{//十六进制显示接受数据
@@ -678,12 +708,14 @@ void Ccomm_appDlg::OnCommMscomm1()
 				for (k = 0; k < len; k++) //将数组转换为 CString 型变量
 				{
 					//下一条语句，显示2个字符一个空格
-					strtemp1.Format(_T("%-3.2x"), *(rxdata + k));
+					strtemp1.Format(_T("%-4.2x"), *(rxdata + k));
 					m_editReceive += strtemp1;
 				}
 			}
 			m_editReceive += _T("\r\n");//换行
+			
 		}
+		
 		break;
 	case 3://comEvCTS
 		MessageBoxW(_T("Clear To Send 线的状态发生变化"));
